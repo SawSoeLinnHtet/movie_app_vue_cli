@@ -5,7 +5,9 @@ export const useMoviesStore = defineStore('movies', {
   state() {
     return {
       data: {},
-      details: {}
+      details: {},
+      videos: [],
+      video: null
     }
   },
   actions: {
@@ -19,10 +21,26 @@ export const useMoviesStore = defineStore('movies', {
     getMovieById(id) {
       axios
         .get(
-          `https://api.themoviedb.org/3/movie/${ id }?api_key=${ process.env.VUE_APP_MOVIE_API_KEY }`
+          `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.VUE_APP_MOVIE_API_KEY}`
         )
         .then((res) => (this.details = res.data))
-        .then((res) => (console.log(res.data)))
+    },
+    getVideos(id) {
+      axios
+        .get(
+          `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.VUE_APP_MOVIE_API_KEY}`
+        )
+        .then(
+          (res) =>
+          (
+            this.videos = res.data.results.filter((video) => video.type == "Trailer")
+          )
+        )
     }
   },
+  getters: {
+    randomTrailer() {
+      this.video = this.videos[Math.floor(Math.random() * this.videos.length)]
+    }
+  }
 })

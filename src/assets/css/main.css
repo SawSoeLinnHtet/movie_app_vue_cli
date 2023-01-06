@@ -115,3 +115,8 @@ a{
   position: sticky;
   bottom: 0;
 }
+.swal-wide{
+  width: 1200px !important;
+  min-height: 600px !important;
+  padding: 0;
+}

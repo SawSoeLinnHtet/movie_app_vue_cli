@@ -5,24 +5,26 @@
         <div class="container-fluid p-5">
           <div class="row">
             <div class="col-12 col-lg-3">
-              <img :src="img_path +  movies.details.poster_path" class="img-fluid poster" alt="original poster">
+              <img :src="img_path + movies.details.poster_path" class="img-fluid poster" alt="original poster">
             </div>
             <div class="col-12 col-lg-9">
               <span class="h2 font-weight-bold text-white d-block mb-2">
                 {{  movies.details.original_title }}
               </span>
-              <div class="details_function d-flex align-items-center">
-                <RadialProgress 
-                  diameter="80"
-                  stroke-width="5"
-                  inner-stroke-width="5"
-                  :completed-steps=" movies.details.vote_average"
-                  animate-speed="10" 
+              <div class="details_function d-flex flex-row flex-md-column align-items-center">
+                <RadialProgress
+                  totalSteps=10
+                  diameter=80
+                  stroke-width=5
+                  inner-stroke-width=5
+                  :completed-steps=movies.details.vote_average
+                  animate-speed=10
                   class="text-white h6 font-weight-bold"
                 >
                   {{ Math.round( movies.details.vote_average * 10) }} %
                 </RadialProgress>
-                <a href="#" class="btn btn-dark ml-3 rounded-circle">
+                <div>
+                  <a href="#" class="btn btn-dark ml-3 rounded-circle">
                   <i class="ri-heart-fill h6"></i>
                 </a>
                 <a href="#" class="btn btn-dark ml-3 rounded-circle">
@@ -31,6 +33,11 @@
                 <a href="#" class="btn btn-dark ml-3 rounded-circle">
                   <i class="ri-bookmark-fill"></i>
                 </a>
+                <a href="#" class="btn btn-dark ml-3 rounded-pill" @click="youtubeFlash(movies.videos[0].key)">
+                  <i class="ri-play-circle-fill"></i>
+                </a>
+                <span class="text-warning ml-2">Play Trailer</span>
+                </div>
               </div>
               <span class="d-flex align-items-center text-white font-weight-normal">
                 <span class="mr-3 mt-1">
@@ -41,7 +48,7 @@
                 <span class="mr-3 mt-1">
                   <i class="ri-time-line h4 text-warning"></i>  
                 </span>
-                {{  movies.details.runtime }} Min
+                {{ movies.details.runtime }} Min
               </span>
               <ul class="list-unstyled">
                 <li v-for="genres in  movies.details.genres" :key="genres.id" class="d-inline-block mr-3 mt-2">
@@ -88,27 +95,31 @@
   import { useMoviesStore } from '@/stores/MoviesStore';
   import moment from 'moment';
   import RadialProgress from "vue3-radial-progress";
+  import { useFlash } from '@/composables/useFlash';
   
   export default {
     data() {
       return {
+        id: this.$route.params.movie_id,
         moment: moment,
-        img_path: "https://image.tmdb.org/t/p/original",   
+        img_path: "https://image.tmdb.org/t/p/original",
       }
-    },
-    mounted() {
-      // this.getDetail()
-      this.movies.getMovieById( this.$route.params.movie_id )
     },
     components: {
       RadialProgress  
     },
     setup() {
       let movies = useMoviesStore()
+      let { youtubeFlash } = useFlash()
 
       return {
-        movies
+        movies,
+        youtubeFlash
       }
+    },
+    created() {
+      this.movies.getMovieById(this.id)
+      this.movies.getVideos(this.id)
     },
   }
 </script>
@@ -139,5 +150,6 @@
     max-height: 430px;
     border-radius: 10px;
   }
+
 </style>
 

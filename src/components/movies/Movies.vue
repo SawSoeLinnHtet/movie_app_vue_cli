@@ -8,8 +8,8 @@
     </div>
     <div class="container px-sm-3 px-md-3 ">
       <movie-pagination
-        :totalPages="movies.data.total_pages"
-        :currentPage="movies.data.page"
+        :totalPages=movies.data.total_pages
+        :currentPage=movies.data.page
         :perPage=20
         @pageChanged="onPageChange"
       />
@@ -17,8 +17,8 @@
         <movie-card :movies="movies.data.results"/>
       </div>
       <movie-pagination
-        :totalPages="movies.data.total_pages"
-        :currentPage="movies.data.page"
+        :totalPages=movies.data.total_pages
+        :currentPage=movies.data.page
         :perPage=20
         @pageChanged="onPageChange"
       />
@@ -40,15 +40,19 @@
       const movies = useMoviesStore();
 
       return { movies }
-  },
+    },
+    created() {
+      this.movies.getMovies()
+      console.log("created")
+    },
+    mounted() {
+      console.log("mounted")
+    },
     methods: {
       onPageChange(page) {
         console.log(page)
         this.movies.getMovies(page)
       }
-    },
-    mounted() {
-      this.movies.getMovies()
     },
   };  
 </script>
