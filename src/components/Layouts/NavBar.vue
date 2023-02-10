@@ -1,7 +1,7 @@
 <template>
   <header>
       <nav class="navbar navbar-expand-md navbar-dark bg-olive mb-2 mb-lg-4  fixed-top overflow-hidden">
-        <router-link class="navbar-brand" to="/">S-Movie</router-link>
+        <router-link class="navbar-brand" to="/">S-Movies</router-link>
         <button
           class="navbar-toggler"
           type="button"
@@ -22,13 +22,13 @@
               <a class="nav-link" @click="flash('This Page is Under Maintainence')">Popular</a>
             </li>
             <li class="nav-item px-md-2 px-lg-3">
-              <router-link @click="flash('This Page is Under Maintainence')" class="nav-link">Genres</router-link>
+              <a @click="flash('This Page is Under Maintainence')" class="nav-link">Genres</a>
             </li>
             <li class="nav-item px-md-2 px-lg-3">
               <a class="nav-link" @click="flash('Error','This Page is Under Maintainence')">Trending</a>
             </li>
             <li class="nav-item px-md-2 px-lg-3">
-              <router-link @click="flash('This Page is Under Maintainence')" class="nav-link">About</router-link>
+              <a @click="flash('This Page is Under Maintainence')" class="nav-link">About</a>
             </li>
           </ul>
         </div>

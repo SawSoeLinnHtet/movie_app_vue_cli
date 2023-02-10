@@ -8,10 +8,10 @@
               <img :src="img_path + movies.details.poster_path" class="img-fluid poster" alt="original poster">
             </div>
             <div class="col-12 col-lg-9">
-              <span class="h2 font-weight-bold text-white d-block mb-2">
+              <span class="h2 font-weight-bold text-white d-block mb-5">
                 {{  movies.details.original_title }}
               </span>
-              <div class="details_function d-flex flex-row flex-md-column align-items-center">
+              <div class="details_function d-flex flex-row flex-md-column mb-3 mt-2">
                 <RadialProgress
                   totalSteps=10
                   diameter=80
