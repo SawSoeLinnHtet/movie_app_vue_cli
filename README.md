@@ -18,10 +18,12 @@ npm run build
 ### Lints and fixes files
 ```
 npm run lint
+```
 
 ###  Vercel Link
 ```
 https://s-movie.vercel.app/
+```
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
