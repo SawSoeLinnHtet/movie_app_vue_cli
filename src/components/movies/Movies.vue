@@ -42,11 +42,10 @@
       return { movies }
     },
     created() {
-      this.movies.getMovies()
       console.log("created")
     },
     mounted() {
-      console.log("mounted")
+      this.movies.getMovies(1)
     },
     methods: {
       onPageChange(page) {

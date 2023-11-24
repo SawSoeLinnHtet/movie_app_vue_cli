@@ -73,7 +73,7 @@
                   v-for="country in movies.details.production_countries"           
                   :key="country.name" class="text-white"
                 >
-                  {{ country.name }}
+                  {{ country.name }},
                 </span>
               </span>
               <p class="h5 text-warning font-weight-bold">

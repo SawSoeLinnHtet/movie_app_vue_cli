@@ -1,7 +1,7 @@
 <template>
   <header>
       <nav class="navbar navbar-expand-md navbar-dark bg-olive mb-2 mb-lg-4  fixed-top overflow-hidden">
-        <router-link class="navbar-brand" to="/">S-Movies</router-link>
+        <router-link class="navbar-brand" to="/">Cinema Plus</router-link>
         <button
           class="navbar-toggler"
           type="button"
