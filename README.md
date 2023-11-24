@@ -22,7 +22,7 @@ npm run lint
 
 ###  Vercel Link
 ```
-https://s-movie.vercel.app/
+https://cinemaplusplus.vercel.app/
 ```
 
 ### Customize configuration
